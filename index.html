@@ -144,8 +144,37 @@
         </div>
     </div>
     <!-- END: Background Elements -->
+
+    <!-- BEGIN: Lock Screen Overlay -->
+    <div id="lock-screen"
+        class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#fff5f7] transition-all duration-1000 ease-in-out">
+        <div
+            class="bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-center max-w-sm w-[90%] border border-white/50">
+            <div class="mb-6 animate-pulse-slow">
+                <span class="material-symbols-outlined text-rose-400 text-5xl">lock_heart</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">ความทรงจำพิเศษ</h2>
+            <p class="text-gray-500 text-sm md:text-base mb-8">กรุณาใส่รหัสผ่านเพื่อเปิดอ่าน</p>
+
+            <div class="relative w-full max-w-[200px] mx-auto">
+                <input type="password" id="passcode-input" placeholder="รหัส 4 หลัก"
+                    class="w-full text-center text-xl tracking-[0.5em] px-4 py-3 rounded-xl border-2 border-rose-100 focus:border-rose-300 focus:ring-0 bg-white/80 transition-colors outline-none font-sans"
+                    maxlength="4" />
+                <p id="error-msg"
+                    class="absolute -bottom-6 left-0 right-0 text-red-400 text-xs font-medium opacity-0 transition-opacity">
+                    รหัสไม่ถูกต้อง ลองนึกดูดีๆ น้า</p>
+            </div>
+
+            <button id="unlock-btn"
+                class="mt-8 bg-rose-400 hover:bg-rose-500 text-white font-medium py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 w-full disabled:opacity-50 disabled:cursor-not-allowed">
+                ปลดล็อก
+            </button>
+        </div>
+    </div>
+    <!-- END: Lock Screen Overlay -->
+
     <!-- BEGIN: Main Content -->
-    <main class="relative z-10 w-full">
+    <main id="main-content" class="relative z-10 w-full hidden opacity-0 transition-opacity duration-1000">
         <!-- Section 1: Intro -->
         <section class="h-screen flex items-center justify-center p-6">
             <div class="text-center">
@@ -275,6 +304,68 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Passcode Logic ---
+        const passcode = "1302";
+        const lockScreen = document.getElementById('lock-screen');
+        const mainContent = document.getElementById('main-content');
+        const inputField = document.getElementById('passcode-input');
+        const unlockBtn = document.getElementById('unlock-btn');
+        const errorMsg = document.getElementById('error-msg');
+
+        function verifyPasscode() {
+            if (inputField.value === passcode) {
+                // Success
+                errorMsg.classList.remove('opacity-100');
+                errorMsg.classList.add('opacity-0');
+
+                // Fade out lock screen
+                lockScreen.classList.add('opacity-0', 'pointer-events-none');
+
+                // Show main content
+                setTimeout(() => {
+                    mainContent.classList.remove('hidden');
+                    // Tiny delay to allow display:block to apply before animating opacity
+                    setTimeout(() => {
+                        mainContent.classList.remove('opacity-0');
+                    }, 50);
+
+                    // Remove lock screen from DOM completely after fade out
+                    setTimeout(() => {
+                        lockScreen.remove();
+                    }, 1000);
+                }, 500);
+
+            } else {
+                // Error
+                errorMsg.classList.remove('opacity-0');
+                errorMsg.classList.add('opacity-100');
+
+                // Shake animation
+                lockScreen.firstElementChild.animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(0)' }
+                ], {
+                    duration: 400,
+                    easing: 'ease-in-out'
+                });
+
+                inputField.value = '';
+                inputField.focus();
+            }
+        }
+
+        unlockBtn.addEventListener('click', verifyPasscode);
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyPasscode();
+            }
+        });
+        // --- End Passcode Logic ---
 
         // Smooth background parallax and color shifting
         let lastScrollY = window.scrollY;
