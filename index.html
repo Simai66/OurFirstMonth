@@ -47,13 +47,15 @@
         /* Reveal animation for scrollytelling - enhanced for smoothness */
         .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            transition: all 1.4s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform, opacity;
+            filter: blur(10px);
+            transform: translateY(50px) scale(0.95);
+            transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity, filter;
         }
 
         .reveal.active {
             opacity: 1;
+            filter: blur(0px);
             transform: translateY(0) scale(1);
         }
 
