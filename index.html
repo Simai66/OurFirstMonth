@@ -47,13 +47,15 @@
         /* Reveal animation for scrollytelling - enhanced for smoothness */
         .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            transition: all 1.4s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform, opacity;
+            filter: blur(10px);
+            transform: translateY(50px) scale(0.95);
+            transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity, filter;
         }
 
         .reveal.active {
             opacity: 1;
+            filter: blur(0px);
             transform: translateY(0) scale(1);
         }
 
@@ -225,7 +227,7 @@
                 <div class="mb-6"><span class="material-symbols-outlined text-rose-300 text-4xl">favorite</span></div>
                 <p class="text-xl md:text-2xl font-light leading-loose text-gray-700 italic">"ถึงเธอ...
                     ขอบคุณนะที่เป็นที่ปลอดภัยและเป็นรอยยิ้มให้กันมาตลอดหนึ่งเดือนที่ผ่านมา ทุกช่วงเวลาที่เราได้คุยกัน
-                    มันมีค่าสำหรับเรามากจริงๆ ไม่ว่าจะพรุ่งนี้หรือวันไหนๆ ก็ขอให้เรามีกันแบบนี้ไปเรื่อยๆ นะ รักนะ"</p>
+                    มันมีค่าสำหรับเรามากจริงๆ ไม่ว่าจะพรุ่งนี้หรือวันไหนๆ ก็ขอให้เรามีกันแบบนี้ไปเรื่อยๆ นะ"</p>
             </div>
         </section>
         <section class="h-screen flex flex-col items-center justify-center p-6">
