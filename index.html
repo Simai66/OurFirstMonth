@@ -114,7 +114,7 @@
         rel="stylesheet" />
 </head>
 
-<body class="font-serif text-gray-800 overflow-x-hidden">
+<body class="font-serif text-gray-800 overflow-x-hidden overflow-hidden">
     <!-- BEGIN: Background Elements -->
     <div data-purpose="background-animation" id="blob-container">
         <div class="blob bg-pink-200 w-[300px] h-[300px] top-[-10%] left-[-10%] animate-pulse-slow" id="blob-1"></div>
@@ -325,6 +325,7 @@
                 // Show main content
                 setTimeout(() => {
                     mainContent.classList.remove('hidden');
+                    document.body.classList.remove('overflow-hidden');
                     // Tiny delay to allow display:block to apply before animating opacity
                     setTimeout(() => {
                         mainContent.classList.remove('opacity-0');
@@ -369,9 +370,13 @@
 
         // Smooth background parallax and color shifting
         let lastScrollY = window.scrollY;
-        window.addEventListener('scroll', () => {
+
+        function updateScrollEffects() {
             const scrollY = window.scrollY;
-            const scrollPercent = scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            // Prevent NaN when maxScroll is 0 (like on the lock screen)
+            const scrollPercent = maxScroll > 0 ? (scrollY / maxScroll) : 0;
+
             const b1 = document.getElementById('blob-1');
             const b2 = document.getElementById('blob-2');
             const b3 = document.getElementById('blob-3');
@@ -380,9 +385,9 @@
             const moveX = scrollPercent * 150;
             const moveY = scrollPercent * 80;
 
-            b1.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            b2.style.transform = `translate(-${moveX * 0.8}px, -${moveY * 1.2}px)`;
-            b3.style.transform = `translate(${moveX * 0.5}px, -${moveY * 0.5}px) scale(${1 + scrollPercent * 0.2})`;
+            if (b1) b1.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            if (b2) b2.style.transform = `translate(-${moveX * 0.8}px, -${moveY * 1.2}px)`;
+            if (b3) b3.style.transform = `translate(${moveX * 0.5}px, -${moveY * 0.5}px) scale(${1 + scrollPercent * 0.2})`;
 
             // Shift background colors smoothly based on progress
             if (scrollPercent > 0.8) {
@@ -394,7 +399,11 @@
             }
 
             lastScrollY = scrollY;
-        });
+        }
+
+        window.addEventListener('scroll', updateScrollEffects);
+        // Initialize once to set starting positions
+        updateScrollEffects();
     </script>
     <!-- END: Scripts -->
 </body>
