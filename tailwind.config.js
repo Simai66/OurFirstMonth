@@ -1,3 +1,6 @@
+import formsPlugin from '@tailwindcss/forms';
+import containerQueriesPlugin from '@tailwindcss/container-queries';
+
 export default {
   content: [
     "./index.html",
@@ -30,7 +33,7 @@ export default {
     }
   },
   plugins: [
-    import('@tailwindcss/forms'),
-    import('@tailwindcss/container-queries'),
+    formsPlugin,
+    containerQueriesPlugin,
   ],
 }
