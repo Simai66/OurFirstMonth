@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reveal animation for scrollytelling - enhanced for smoothness */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: all 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Background Blob Styling */
+.blob {
+  position: fixed;
+  z-index: -1;
+  filter: blur(80px);
+  opacity: 0.3;
+  border-radius: 50%;
+  transition: transform 1.5s ease-out, background-color 2s ease-in-out;
+}
+
+.floating-heart {
+  position: fixed;
+  z-index: -1;
+  color: rgba(251, 113, 133, 0.2);
+  pointer-events: none;
+  animation: soft-float 8s ease-in-out infinite;
+}
+
+@keyframes soft-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-30px) rotate(5deg); }
+  66% { transform: translateY(-15px) rotate(-5deg); }
+}
+
+body {
+  background-color: #fff5f7;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

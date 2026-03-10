@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ครบรอบ 1 เดือนของเรา</title>
+<!-- Google Fonts: Noto Serif Thai for elegant romantic feel -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Noto Serif Thai"', 'serif'],
+          },
+          colors: {
+            romantic: {
+              50: '#fff5f7',
+              100: '#ffeef2',
+              200: '#ffdce5',
+              300: '#ffb6c8',
+              400: '#ff85a1',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    /* Reveal animation for scrollytelling */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Background Blob Styling */
+    .blob {
+      position: fixed;
+      z-index: -1;
+      filter: blur(60px);
+      opacity: 0.4;
+      border-radius: 50%;
+      transition: all 2s ease-in-out;
+    }
+
+    body {
+      background-color: #fff5f7;
+      scroll-behavior: smooth;
+    }
+
+    /* Hide scrollbar but allow scrolling */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="font-serif text-gray-800 overflow-x-hidden">
+<!-- BEGIN: Background Elements -->
+<div data-purpose="background-animation" id="blob-container">
+<div class="blob bg-pink-200 w-[300px] h-[300px] top-[-10%] left-[-10%] animate-pulse-slow" id="blob-1"></div>
+<div class="blob bg-rose-100 w-[400px] h-[400px] bottom-[10%] right-[-5%] animate-float" id="blob-2" style="animation-delay: 1s;"></div>
+<div class="blob bg-white w-[250px] h-[250px] top-[40%] left-[20%] opacity-60" id="blob-3"></div>
+</div>
+<!-- END: Background Elements -->
+<!-- BEGIN: Main Content -->
+<main class="relative z-10 w-full">
+<!-- Section 1: Intro -->
+<section class="h-screen flex items-center justify-center p-6">
+<div class="text-center">
+<h1 class="text-3xl md:text-5xl font-light tracking-wide text-rose-400 reveal" data-purpose="intro-text">
+          หนึ่งเดือนที่ผ่านมา...
+        </h1>
+<p class="mt-4 text-gray-400 italic text-sm md:text-base reveal" style="transition-delay: 0.3s;">
+          ( เลื่อนลงมาช้าๆ นะ )
+        </p>
+</div>
+</section>
+<!-- Section 2: Narrative 1 -->
+<section class="h-screen flex items-center justify-center p-6">
+<div class="max-w-xl text-center">
+<p class="text-2xl md:text-3xl font-light leading-relaxed reveal">
+          "จากความบังเอิญ กลายเป็นความตั้งใจ"
+        </p>
+</div>
+</section>
+<!-- Section 3: Narrative 2 -->
+<section class="h-screen flex items-center justify-center p-6">
+<div class="max-w-xl text-center">
+<p class="text-2xl md:text-3xl font-light leading-relaxed reveal">
+          ทุกข้อความที่ส่งหา... <br/>
+<span class="text-rose-300 text-lg md:text-xl mt-4 block">ล้วนมีความหมายมากกว่าแค่ตัวอักษร</span>
+</p>
+</div>
+</section>
+<!-- Section 4: Narrative 3 -->
+<section class="h-screen flex items-center justify-center p-6">
+<div class="max-w-xl text-center">
+<p class="text-2xl md:text-3xl font-light leading-relaxed reveal">
+          รอยยิ้มที่เกิดขึ้นในทุกๆ วัน <br/>
+<span class="font-bold text-rose-400 italic">ขอบคุณนะ</span>
+</p>
+</div>
+</section>
+<!-- Section 5: Narrative 4 -->
+<section class="h-screen flex items-center justify-center p-6">
+<div class="max-w-xl text-center">
+<p class="text-2xl md:text-3xl font-light leading-relaxed reveal">
+          ขอบคุณที่เข้ามาเป็นเรื่องดีๆ ในทุกวัน
+        </p>
+</div>
+</section>
+<!-- Section 6: Anniversary Message -->
+<section class="h-screen flex flex-col items-center justify-center p-6">
+<div class="text-center reveal" data-purpose="anniversary-finale">
+<div class="mb-8 flex justify-center">
+<svg class="w-12 h-12 text-rose-400 animate-bounce" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+</svg>
+</div>
+<h2 class="text-4xl md:text-6xl font-bold text-rose-500 mb-4">
+          สุขสันต์วันครบรอบ 1 เดือนนะ
+        </h2>
+<p class="text-rose-300 text-lg">
+          ยินดีที่ได้รู้จัก และดีใจที่มีคุณอยู่ตรงนี้
+        </p>
+</div>
+</section>
+</main>
+<!-- END: Main Content -->
+<!-- BEGIN: Scripts -->
+<script data-purpose="scroll-animations">
+    // Intersection Observer for the reveal effect
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          // Optional: Remove 'active' if you want it to fade out when scrolling back up
+          // entry.target.classList.remove('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Simple background color/shape shift on scroll
+    window.addEventListener('scroll', () => {
+      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      const b1 = document.getElementById('blob-1');
+      const b2 = document.getElementById('blob-2');
+      
+      // Move blobs based on scroll
+      b1.style.transform = `translate(${scrollPercent * 100}px, ${scrollPercent * 50}px)`;
+      b2.style.transform = `translate(-${scrollPercent * 80}px, -${scrollPercent * 100}px)`;
+      
+      // Shift colors slightly
+      if (scrollPercent > 0.5) {
+        b1.classList.replace('bg-pink-200', 'bg-rose-200');
+        document.body.style.backgroundColor = '#fff0f3';
+      } else {
+        b1.classList.replace('bg-rose-200', 'bg-pink-200');
+        document.body.style.backgroundColor = '#fff5f7';
+      }
+    });
+  </script>
+<!-- END: Scripts -->
+</body></html>
